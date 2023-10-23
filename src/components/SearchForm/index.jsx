@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useShows } from "../../contexts";
 
-export default function SearchForm({ setShowData }) {
+export default function SearchForm() {
+  const { setShowData } = useShows();
   const [inputValue, setInputValue] = useState("");
   const [searchString, setSearchString] = useState("");
 

@@ -1,29 +1,20 @@
-// SortFilter.jsx
-import React, { useState, useEffect } from "react";
+import React from 'react';
+import { useShows } from '../../contexts'; 
 
-export default function ShowFilter({ showData, setSortedShows }) {
-  const [sortByRating, setSortByRating] = useState(false);
-
-  useEffect(() => {
-    const sortedShows = sortByRating
-      ? [...showData].sort(
-          (a, b) => (b.rating?.average || 0) - (a.rating?.average || 0)
-        )
-      : showData;
-
-    setSortedShows(sortedShows);
-  }, [showData, sortByRating, setSortedShows]);
+function SortFilter() {
+  const { setSortByRating } = useShows();  
 
   return (
     <div>
       <label>
         Sort by Rating:
-        <input
-          type="checkbox"
-          checked={sortByRating}
-          onChange={() => setSortByRating((prev) => !prev)}
+        <input 
+          type="checkbox" 
+          onChange={() => setSortByRating(prev => !prev)}
         />
       </label>
     </div>
   );
 }
+
+export default SortFilter;
